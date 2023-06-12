@@ -1,0 +1,94 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+int main() 
+{
+	
+
+		srand(time(nullptr));
+		int bet1;	// First coin guess
+		int bet2;	// Second coin guess
+		int betSum;	// Sum of money to bet
+		int betTotal = 0; //Total money at the end of the game
+		int odds = 2; //Betting odds
+		int coin1;
+		int coin2;
+		char input;
+
+		std::cout<< " /$$$$$$$$ /$$      /$$  /$$$$$$        /$$   /$$ /$$$$$$$ \n"
+				 << "|__  $$__/| $$  /$ | $$ /$$__  $$      | $$  | $$| $$__  $$\n"
+				 << "   | $$   | $$ /$$$| $$| $$    $$      | $$  | $$| $$   |$$\n"
+				 << "   | $$   | $$/$$ $$ $$| $$  | $$      | $$  | $$| $$$$$$$/\n"
+				 << "   | $$   | $$$$_  $$$$| $$  | $$      | $$  | $$| $$____/ \n"
+				 << "   | $$   | $$$/  | $$$| $$  | $$      | $$  | $$| $$      \n"
+				 << "   | $$   | $$/   |  $$|  $$$$$$/      |  $$$$$$/| $$      \n"
+				 << "   |__/   |__/    | __/  ______/         ______/ |__/      \n"
+				 << "			BY JASPER DARROUGH\n" << std::endl;
+
+		
+
+		while (1)
+		{
+
+			std::cout << "Bet Tails (1) or Heads (2) or take your winnings (0)\n";
+			std::cin >> bet1;
+			bet2 = bet1;
+
+			if (bet1 == 0 || bet2 == 0)
+			{ 
+				break;
+			}
+			else if (bet1 < 0 || bet1 > 2)
+			{
+				std::cout << "Invalid input. Please make a  valid selection.\n";
+				continue;
+			}
+			std::cout << "How much will you bet?\n" << "$ ";
+			std::cin >> betSum;
+			betTotal = betTotal - betSum;
+
+			std::cout << "Come in Spinner!! \n";
+			system("pause");
+
+			while (1)
+			{
+				coin1 = (rand() % 2 + 1);
+				coin2 = (rand() % 2 + 1);
+
+				if (coin1 == 2 && coin2 == 2)
+				{
+					std::cout << "  ( H )  " << "  ( H )  \n" << " Heads!\n";
+					break;
+				}
+				if (coin1 == 2 && coin2 != 2)
+				{
+					std::cout << "  ( H )  " << "  ( T )  \n" << "Odds... Flip again\n";
+					system("pause");
+				}
+				if (coin1 == 1 && coin2 == 1)
+				{
+					std::cout << "  ( T )  " << "  ( T )  \n" << " Tails!\n";
+					break;
+				}
+				if (coin1 == 1 && coin2 != 1)
+				{
+					std::cout << "  ( T )  " << "  ( H )  \n" << "Odds... Flip again\n";
+					system("pause");
+				}
+			}
+			if (bet1 == coin1 && bet2 == coin2)
+			{
+				std::cout << "YOU WIN!! YOU GET\n $ " << betSum * odds << std::endl;
+				betTotal = betTotal + (betSum * odds);
+			}
+			else
+			{
+				std::cout << "YOU LOSE, YOU GET NOTHING : ( \n";
+			}
+
+		}
+		std::cout << "THANKS FOR PLAYING.\nYour total winnings are:   $" << betTotal << "\n" << std::endl;
+
+	return 0;
+}
